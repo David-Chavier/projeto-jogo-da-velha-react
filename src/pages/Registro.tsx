@@ -28,7 +28,10 @@ const Registro: React.FC = () => {
     if (!id) {
       return alert("Id da sala não informado");
     }
-    const result = await dispatch(obterJogoAction({ id_jogador02, id }));
+
+    const result = await dispatch(
+      obterJogoAction({ id_jogador02, id: id.slice(1, 6) })
+    );
 
     if (!result.payload.ok) {
       return alert("Informe um id de sala valido");

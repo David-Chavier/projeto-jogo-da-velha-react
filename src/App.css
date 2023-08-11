@@ -1,5 +1,9 @@
 body{
   height: 100vh;
+  background-image: url("/public/images/image01.avif");
+  background-size: 45rem;
+  background-repeat: no-repeat;
+  background-position: bottom right;
 }
 
 .App {
@@ -32,11 +36,14 @@ body{
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* @media (max-width: 768px) {
+  body {
+    background-size: 45rem;
   }
-  to {
-    transform: rotate(360deg);
+} */
+
+@media (max-width: 800px) {
+  body {
+    background-size: 100vw; /* Aumenta ainda mais o tamanho da imagem para telas ainda menores */
   }
 }

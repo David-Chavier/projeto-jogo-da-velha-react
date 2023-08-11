@@ -54,11 +54,29 @@ const Home: React.FC = () => {
 
   return (
     <Grid>
-      <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Grid>{`ID: ${tabuleiro.id}`}</Grid>
-        <Grid>
-          <Button onClick={moveParaRegistro}>Sair</Button>
-        </Grid>
+      <Grid
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "0 10px 0 10px",
+        }}
+      >
+        <Grid sx={{ fontSize: "30px" }}>{`ID: #${tabuleiro.id}`}</Grid>
+        <Button
+          sx={{
+            margin: "5px",
+            border: "2px solid red",
+            color: "red",
+            "&:hover": {
+              backgroundColor: "brown",
+              color: "white",
+              border: "none",
+            },
+          }}
+          onClick={moveParaRegistro}
+        >
+          Sair
+        </Button>
       </Grid>
 
       <Grid
@@ -66,7 +84,7 @@ const Home: React.FC = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "95vh",
+          height: "85vh",
         }}
       >
         <Grid>
@@ -78,12 +96,13 @@ const Home: React.FC = () => {
             >
               <Button
                 sx={{
+                  color: "black",
                   fontSize: "48px",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  borderBottom: "solid",
-                  borderRight: "solid",
+                  borderBottom: "5px solid brown",
+                  borderRight: "5px solid brown",
                   width: "100px",
                   height: "100px",
                 }}
@@ -93,11 +112,12 @@ const Home: React.FC = () => {
               </Button>
               <Button
                 sx={{
+                  color: "black",
                   fontSize: "48px",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  borderBottom: "solid",
+                  borderBottom: "5px solid brown",
                   width: "100px",
                   height: "100px",
                 }}
@@ -107,12 +127,13 @@ const Home: React.FC = () => {
               </Button>
               <Button
                 sx={{
+                  color: "black",
                   fontSize: "48px",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  borderBottom: "solid",
-                  borderLeft: "solid",
+                  borderBottom: "5px solid brown",
+                  borderLeft: "5px solid brown",
                   width: "100px",
                   height: "100px",
                 }}
@@ -128,11 +149,12 @@ const Home: React.FC = () => {
             >
               <Button
                 sx={{
+                  color: "black",
                   fontSize: "48px",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  borderRight: "solid",
+                  borderRight: "5px solid brown",
                   width: "100px",
                   height: "100px",
                 }}
@@ -142,6 +164,7 @@ const Home: React.FC = () => {
               </Button>
               <Button
                 sx={{
+                  color: "black",
                   fontSize: "48px",
                   display: "flex",
                   justifyContent: "center",
@@ -155,11 +178,12 @@ const Home: React.FC = () => {
               </Button>
               <Button
                 sx={{
+                  color: "black",
                   fontSize: "48px",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  borderLeft: "solid",
+                  borderLeft: "5px solid brown",
                   width: "100px",
                   height: "100px",
                 }}
@@ -175,12 +199,13 @@ const Home: React.FC = () => {
             >
               <Button
                 sx={{
+                  color: "black",
                   fontSize: "48px",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  borderTop: "solid",
-                  borderRight: "solid",
+                  borderTop: "5px solid brown",
+                  borderRight: "5px solid brown",
                   width: "100px",
                   height: "100px",
                 }}
@@ -190,11 +215,12 @@ const Home: React.FC = () => {
               </Button>
               <Button
                 sx={{
+                  color: "black",
                   fontSize: "48px",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  borderTop: "solid",
+                  borderTop: "5px solid brown",
                   width: "100px",
                   height: "100px",
                 }}
@@ -204,12 +230,13 @@ const Home: React.FC = () => {
               </Button>
               <Button
                 sx={{
+                  color: "black",
                   fontSize: "48px",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  borderTop: "solid",
-                  borderLeft: "solid",
+                  borderTop: "5px solid brown",
+                  borderLeft: "5px solid brown",
                   width: "100px",
                   height: "100px",
                 }}
