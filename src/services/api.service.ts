@@ -1,5 +1,9 @@
 import axios from "axios";
-import { AtualizarJogoTypes, CriarJogoTypes } from "../types/jogo.types";
+import {
+  AtualizarJogoTypes,
+  CriarJogoTypes,
+  ListarJogoTypes,
+} from "../types/jogo.types";
 
 const api = axios.create({
   baseURL: "http://localhost:3333",
@@ -35,6 +39,19 @@ export class ApiService {
       return err.response.data;
     }
   }
+
+  public static async listarjogo(props: ListarJogoTypes): Promise<ApiResponse> {
+    try {
+      const result = await api.get(
+        `/jogador/${props.id_jogador02}/jogo/${props.id}`
+      );
+      return result.data;
+    } catch (err: any) {
+      console.log(err.response.data);
+      return err.response.data;
+    }
+  }
+
   public static async atualizarjogo(
     props: AtualizarJogoTypes
   ): Promise<ApiResponse> {

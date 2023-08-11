@@ -2,51 +2,71 @@ import { Button, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../store/hooks";
 import { useDispatch } from "react-redux";
-import { atualizarJogoAction } from "../store/modules/jogoSlice";
+import {
+  atualizarJogoAction,
+  obterJogoAction,
+} from "../store/modules/jogoSlice";
+import { useNavigate } from "react-router-dom";
+import { deleteJogador01 } from "../store/modules/jogadorSlice";
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch<any>();
   const tabuleiro = useAppSelector((state) => state.jogo);
   const idJogador = useAppSelector((state) => state.jogador);
 
   const arrayJogo = tabuleiro.tabuleiro;
+  console.log(idJogador);
 
   const [actionButton, setActionButton] = useState<string[]>(arrayJogo);
-  const [valor, setValor] = useState<string>("X");
 
   useEffect(() => {
     setActionButton(arrayJogo);
+    entrarComoJogador02();
   }, []);
 
-  const newArrayJogo = arrayJogo.slice();
-  async function handleAction(id: number) {
-    if (valor === "X" && newArrayJogo[id] === "") {
-      setValor("O");
-    } else if (valor === "O" && newArrayJogo[id] === "") {
-      setValor("X");
+  async function entrarComoJogador02() {
+    const id_jogador02 = idJogador.id_jogador02;
+    if (id_jogador02) {
+      await dispatch(obterJogoAction({ id_jogador02, id: tabuleiro.id }));
     }
+  }
+
+  const newArrayJogo = arrayJogo.slice();
+
+  async function handleAction(id: number) {
     setActionButton(newArrayJogo);
     const result = await dispatch(
       atualizarJogoAction({
-        id_jogador01: idJogador._id_jogador,
-        id_jogador02: "ba50f377-8c84-4566-a53d-2dd13618c1e7",
+        id_jogador01: idJogador.id_jogador01,
+        id_jogador02: idJogador.id_jogador02,
         id: tabuleiro.id,
         index: id,
-        valor: valor,
       })
     );
     setActionButton(result.payload.data.tabuleiro);
   }
 
+  function moveParaRegistro() {
+    dispatch(deleteJogador01());
+    navigate("/");
+  }
+
   return (
     <Grid>
-      {`ID: ${tabuleiro.id}`}
+      <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Grid>{`ID: ${tabuleiro.id}`}</Grid>
+        <Grid>
+          <Button onClick={moveParaRegistro}>Sair</Button>
+        </Grid>
+      </Grid>
+
       <Grid
         sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100vh",
+          height: "95vh",
         }}
       >
         <Grid>

@@ -1,18 +1,41 @@
 import { Button, Grid, TextField } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { criarJogadorAction } from "../store/modules/jogadorSlice";
-import { criarJogoAction } from "../store/modules/jogoSlice";
+import { useDispatch } from "react-redux";
+import { criarJogador01, criarJogador02 } from "../store/modules/jogadorSlice";
+import { criarJogoAction, obterJogoAction } from "../store/modules/jogoSlice";
+import { v4 as createUuid } from "uuid";
 
 const Registro: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const idJogador = useAppSelector((state) => state.jogador);
+  const dispatch = useDispatch<any>();
 
+  const [id, setId] = useState<string>("");
+  // const idJogador = useAppSelector((state) => state.jogador._id_jogador);
+  // console.log(idJogador);
+
+  // Cria um id do jogador01 e chama o dispatch para criar o jogo.
   async function criarUsuario() {
-    await dispatch(criarJogadorAction());
-    await dispatch(criarJogoAction({ _id_jogador: idJogador._id_jogador }));
+    const _id_jogador = createUuid();
+    await dispatch(criarJogoAction({ _id_jogador }));
+    dispatch(criarJogador01({ id_jogador01: _id_jogador }));
+    navigate("/home");
+  }
+
+  //Cria um id para o jogador02 e chama o dispatch para entrar no jogo.
+  async function entrarComoJogador02() {
+    const id_jogador02 = createUuid();
+    if (!id) {
+      return alert("Id da sala não informado");
+    }
+    const result = await dispatch(obterJogoAction({ id_jogador02, id }));
+
+    if (!result.payload.ok) {
+      return alert("Informe um id de sala valido");
+    }
+    console.log(result);
+
+    dispatch(criarJogador02({ id_jogador02 }));
     navigate("/home");
   }
 
@@ -28,11 +51,15 @@ const Registro: React.FC = () => {
         }}
       >
         <Grid item xs={2}>
-          <TextField label="ID da sala" fullWidth></TextField>
+          <TextField
+            label="ID da sala"
+            fullWidth
+            onChange={(e) => setId(e.target.value)}
+          ></TextField>
         </Grid>
         <Grid item xs={2}>
           <Button
-            onClick={criarUsuario}
+            onClick={entrarComoJogador02}
             sx={{ border: "solid", margin: "30px" }}
           >
             ENTRAR NA SALA

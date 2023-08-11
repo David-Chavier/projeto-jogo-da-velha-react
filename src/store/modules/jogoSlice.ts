@@ -4,12 +4,22 @@ import {
   AtualizarJogoTypes,
   CriarJogoTypes,
   JogoTypes,
+  ListarJogoTypes,
 } from "../../types/jogo.types";
 
 export const criarJogoAction = createAsyncThunk(
   "jogo/create",
   async (props: CriarJogoTypes) => {
     const result = await ApiService.criarjogo(props);
+    return result;
+  }
+);
+
+export const obterJogoAction = createAsyncThunk(
+  "jogo/list",
+  async (props: ListarJogoTypes) => {
+    const result = await ApiService.listarjogo(props);
+
     return result;
   }
 );
@@ -28,6 +38,11 @@ const requestJogoSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(criarJogoAction.fulfilled, (state, action) => {
+      console.log(action.payload.data ?? []);
+      return action.payload.data ?? [];
+    });
+
+    builder.addCase(obterJogoAction.fulfilled, (state, action) => {
       console.log(action.payload.data ?? []);
       return action.payload.data ?? [];
     });

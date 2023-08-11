@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ApiService } from "../../services/api.service";
-import { CriarJogoTypes } from "../../types/jogo.types";
+import { CriarJogadoresTypes } from "../../types/jogo.types";
 
 export const criarJogadorAction = createAsyncThunk(
   "jogador/create",
@@ -12,14 +12,30 @@ export const criarJogadorAction = createAsyncThunk(
 
 const requestJogadorSlice = createSlice({
   name: "jogador",
-  initialState: {} as CriarJogoTypes,
-  reducers: {},
-  extraReducers(builder) {
-    builder.addCase(criarJogadorAction.fulfilled, (state, action) => {
-      console.log(action.payload.data ?? {});
-      return action.payload.data ?? {};
-    });
+  initialState: {} as CriarJogadoresTypes,
+  reducers: {
+    criarJogador01: (state, action) => {
+      state.id_jogador01 = action.payload.id_jogador01;
+      console.log(state.id_jogador01);
+    },
+    criarJogador02: (state, action) => {
+      state.id_jogador02 = action.payload.id_jogador02;
+      console.log(state.id_jogador02);
+    },
+
+    deleteJogador01: (state) => {
+      state.id_jogador01 = undefined;
+      state.id_jogador02 = undefined;
+    },
   },
+  // extraReducers(builder) {
+  //   builder.addCase(criarJogadorAction.fulfilled, (state, action) => {
+  //     console.log(action.payload.data ?? {});
+  //     return action.payload.data ?? {};
+  //   });
+  // },
 });
 
+export const { criarJogador01, criarJogador02, deleteJogador01 } =
+  requestJogadorSlice.actions;
 export default requestJogadorSlice.reducer;
