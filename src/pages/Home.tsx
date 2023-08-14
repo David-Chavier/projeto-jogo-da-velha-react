@@ -7,7 +7,8 @@ import {
   obterJogoAction,
 } from "../store/modules/jogoSlice";
 import { useNavigate } from "react-router-dom";
-import { deleteJogador01 } from "../store/modules/jogadorSlice";
+import { deleteJogador } from "../store/modules/jogadorSlice";
+import io from "socket.io-client";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -15,15 +16,16 @@ const Home: React.FC = () => {
   const tabuleiro = useAppSelector((state) => state.jogo);
   const idJogador = useAppSelector((state) => state.jogador);
 
-  const arrayJogo = tabuleiro.tabuleiro;
-  console.log(idJogador);
-
-  const [actionButton, setActionButton] = useState<string[]>(arrayJogo);
-
   useEffect(() => {
+    if (!idJogador.id_jogador01 && !idJogador.id_jogador02) {
+      return navigate("/");
+    }
     setActionButton(arrayJogo);
     entrarComoJogador02();
   }, []);
+
+  const arrayJogo = tabuleiro.tabuleiro ?? ["", "", "", "", "", "", "", "", ""];
+  const [actionButton, setActionButton] = useState<string[]>(arrayJogo);
 
   async function entrarComoJogador02() {
     const id_jogador02 = idJogador.id_jogador02;
@@ -48,7 +50,7 @@ const Home: React.FC = () => {
   }
 
   function moveParaRegistro() {
-    dispatch(deleteJogador01());
+    dispatch(deleteJogador());
     navigate("/");
   }
 

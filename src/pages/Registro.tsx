@@ -1,8 +1,12 @@
 import { Button, Grid, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { criarJogador01, criarJogador02 } from "../store/modules/jogadorSlice";
+import {
+  criarJogador01,
+  criarJogador02,
+  deleteJogador,
+} from "../store/modules/jogadorSlice";
 import { criarJogoAction, obterJogoAction } from "../store/modules/jogoSlice";
 import { v4 as createUuid } from "uuid";
 
@@ -15,6 +19,10 @@ const Registro: React.FC = () => {
   // console.log(idJogador);
 
   // Cria um id do jogador01 e chama o dispatch para criar o jogo.
+  useEffect(() => {
+    dispatch(deleteJogador());
+  }, []);
+
   async function criarUsuario() {
     const _id_jogador = createUuid();
     await dispatch(criarJogoAction({ _id_jogador }));
@@ -26,7 +34,8 @@ const Registro: React.FC = () => {
   async function entrarComoJogador02() {
     const id_jogador02 = createUuid();
     if (!id) {
-      return alert("Id da sala não informado");
+      alert("Id da sala não informado");
+      return;
     }
 
     const result = await dispatch(

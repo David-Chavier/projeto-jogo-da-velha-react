@@ -23,7 +23,7 @@ const requestJogadorSlice = createSlice({
       console.log(state.id_jogador02);
     },
 
-    deleteJogador01: (state) => {
+    deleteJogador: (state) => {
       state.id_jogador01 = undefined;
       state.id_jogador02 = undefined;
     },
@@ -36,6 +36,6 @@ const requestJogadorSlice = createSlice({
   // },
 });
 
-export const { criarJogador01, criarJogador02, deleteJogador01 } =
+export const { criarJogador01, criarJogador02, deleteJogador } =
   requestJogadorSlice.actions;
 export default requestJogadorSlice.reducer;
