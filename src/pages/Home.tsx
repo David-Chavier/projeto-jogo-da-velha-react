@@ -2,10 +2,7 @@ import { Button, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../store/hooks";
 import { useDispatch } from "react-redux";
-import {
-  atualizarJogoAction,
-  obterJogoAction,
-} from "../store/modules/jogoSlice";
+import { atualizarJogoAction } from "../store/modules/jogoSlice";
 import { useNavigate } from "react-router-dom";
 import { deleteJogador } from "../store/modules/jogadorSlice";
 import io from "socket.io-client";
@@ -17,22 +14,22 @@ const Home: React.FC = () => {
   const idJogador = useAppSelector((state) => state.jogador);
 
   useEffect(() => {
+    const socketInstance = io("http://localhost:3001");
+    socketInstance.on("atualizacao", (dadosAtualizados) => {
+      // Atualizar o estado do jogo com os dados recebidos
+      setActionButton(dadosAtualizados.tabuleiro);
+      // dispatch(atualizarJogo(dadosAtualizados.tabuleiro));
+    });
     if (!idJogador.id_jogador01 && !idJogador.id_jogador02) {
       return navigate("/");
     }
-    setActionButton(arrayJogo);
-    entrarComoJogador02();
+    // setActionButton(arrayJogo);
   }, []);
+
+  // console.log(estadoJogo);
 
   const arrayJogo = tabuleiro.tabuleiro ?? ["", "", "", "", "", "", "", "", ""];
   const [actionButton, setActionButton] = useState<string[]>(arrayJogo);
-
-  async function entrarComoJogador02() {
-    const id_jogador02 = idJogador.id_jogador02;
-    if (id_jogador02) {
-      await dispatch(obterJogoAction({ id_jogador02, id: tabuleiro.id }));
-    }
-  }
 
   const newArrayJogo = arrayJogo.slice();
 
