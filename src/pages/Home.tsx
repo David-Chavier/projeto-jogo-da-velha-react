@@ -14,7 +14,8 @@ const Home: React.FC = () => {
   const idJogador = useAppSelector((state) => state.jogador);
 
   useEffect(() => {
-    const socketInstance = io("http://localhost:3001");
+    const socketInstance = io("https://projeto-jogoda-velha-api.onrender.com");
+    console.log(socketInstance);
     socketInstance.on("atualizacao", (dadosAtualizados) => {
       // Atualizar o estado do jogo com os dados recebidos
       setActionButton(dadosAtualizados.tabuleiro);

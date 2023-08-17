@@ -6,7 +6,7 @@ import {
 } from "../types/jogo.types";
 
 const api = axios.create({
-  baseURL: "http://localhost:3333",
+  baseURL: "https://projeto-jogoda-velha-api.onrender.com",
 });
 
 export interface ApiResponse {
