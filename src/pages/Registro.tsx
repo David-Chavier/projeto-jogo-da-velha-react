@@ -39,7 +39,7 @@ const Registro: React.FC = () => {
     }
 
     const result = await dispatch(
-      obterJogoAction({ id_jogador02, id: id.slice(1, 6) })
+      obterJogoAction({ id_jogador02, id: id.slice(1, 5) })
     );
 
     if (!result.payload.ok) {
@@ -64,6 +64,7 @@ const Registro: React.FC = () => {
       >
         <Grid item xs={2}>
           <TextField
+            defaultValue={"#"}
             label="ID da sala"
             fullWidth
             onChange={(e) => setId(e.target.value)}
