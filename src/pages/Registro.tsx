@@ -55,14 +55,16 @@ const Registro: React.FC = () => {
     <React.Fragment>
       <Grid
         container
+        spacing={2}
         sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100vh",
+          height: "50vh",
+          // width: "100vw",
         }}
       >
-        <Grid item xs={2}>
+        <Grid item xs={11} md={5}>
           <TextField
             defaultValue={"#"}
             label="ID da sala"
@@ -70,27 +72,39 @@ const Registro: React.FC = () => {
             onChange={(e) => setId(e.target.value)}
           ></TextField>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={11} md={2}>
           <Button
+            fullWidth
             onClick={entrarComoJogador02}
-            sx={{ border: "solid", margin: "30px" }}
+            sx={{
+              border: "solid",
+              height: "55px",
+              ":hover": {
+                background: "#64d6f4",
+                border: "#64d6f4",
+                height: "50px",
+                color: "#8b0000",
+              },
+            }}
           >
             ENTRAR NA SALA
           </Button>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
+        <Grid item xs={7} md={6}>
           <Button
+            fullWidth
             onClick={criarUsuario}
-            sx={{ border: "solid", margin: "30px" }}
+            sx={{
+              border: "solid",
+              ":hover": {
+                background: "#64d6f4",
+                border: "#64d6f4",
+                height: "50px",
+                color: "#8b0000",
+              },
+            }}
           >
-            CRIAR PARTIDA
+            CRIAR NOVA PARTIDA
           </Button>
         </Grid>
       </Grid>
