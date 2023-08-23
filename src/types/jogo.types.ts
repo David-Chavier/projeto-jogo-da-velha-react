@@ -24,4 +24,5 @@ export type JogoTypes = {
   id_jogador01: string;
   id_jogador02: string;
   tabuleiro: string[];
+  vitoria: number[];
 };

@@ -13,21 +13,79 @@ const Home: React.FC = () => {
   const tabuleiro = useAppSelector((state) => state.jogo);
   const idJogador = useAppSelector((state) => state.jogador);
 
+  const [corBotao, setCorBotao] = useState<string>("none");
+  const [corBotao1, setCorBotao1] = useState<string>("none");
+  const [corBotao2, setCorBotao2] = useState<string>("none");
+  const [corBotao3, setCorBotao3] = useState<string>("none");
+  const [corBotao4, setCorBotao4] = useState<string>("none");
+  const [corBotao5, setCorBotao5] = useState<string>("none");
+  const [corBotao6, setCorBotao6] = useState<string>("none");
+  const [corBotao7, setCorBotao7] = useState<string>("none");
+  const [corBotao8, setCorBotao8] = useState<string>("none");
+
   useEffect(() => {
     const socketInstance = io("https://projeto-jogoda-velha-api.onrender.com");
-    console.log(socketInstance);
     socketInstance.on("atualizacao", (dadosAtualizados) => {
-      // Atualizar o estado do jogo com os dados recebidos
+      if (dadosAtualizados.vitoria.includes(0)) {
+        setCorBotao("#d3d3d3");
+      }
+      if (dadosAtualizados.vitoria.includes(1)) {
+        setCorBotao1("#d3d3d3");
+      }
+      if (dadosAtualizados.vitoria.includes(2)) {
+        setCorBotao2("#d3d3d3");
+      }
+      if (dadosAtualizados.vitoria.includes(3)) {
+        setCorBotao3("#d3d3d3");
+      }
+      if (dadosAtualizados.vitoria.includes(4)) {
+        setCorBotao4("#d3d3d3");
+      }
+      if (dadosAtualizados.vitoria.includes(5)) {
+        setCorBotao5("#d3d3d3");
+      }
+      if (dadosAtualizados.vitoria.includes(6)) {
+        setCorBotao6("#d3d3d3");
+      }
+      if (dadosAtualizados.vitoria.includes(7)) {
+        setCorBotao7("#d3d3d3");
+      }
+      if (dadosAtualizados.vitoria.includes(8)) {
+        setCorBotao8("#d3d3d3");
+      }
       setActionButton(dadosAtualizados.tabuleiro);
-      // dispatch(atualizarJogo(dadosAtualizados.tabuleiro));
     });
+    if (tabuleiro.vitoria.includes(0)) {
+      setCorBotao("#d3d3d3");
+    }
+    if (tabuleiro.vitoria.includes(1)) {
+      setCorBotao1("#d3d3d3");
+    }
+    if (tabuleiro.vitoria.includes(2)) {
+      setCorBotao2("#d3d3d3");
+    }
+    if (tabuleiro.vitoria.includes(3)) {
+      setCorBotao3("#d3d3d3");
+    }
+    if (tabuleiro.vitoria.includes(4)) {
+      setCorBotao4("#d3d3d3");
+    }
+    if (tabuleiro.vitoria.includes(5)) {
+      setCorBotao5("#d3d3d3");
+    }
+    if (tabuleiro.vitoria.includes(6)) {
+      setCorBotao6("#d3d3d3");
+    }
+    if (tabuleiro.vitoria.includes(7)) {
+      setCorBotao7("#d3d3d3");
+    }
+    if (tabuleiro.vitoria.includes(8)) {
+      setCorBotao8("#d3d3d3");
+    }
     if (!idJogador.id_jogador01 && !idJogador.id_jogador02) {
       return navigate("/");
     }
-    // setActionButton(arrayJogo);
   }, []);
-
-  // console.log(estadoJogo);
 
   const arrayJogo = tabuleiro.tabuleiro ?? ["", "", "", "", "", "", "", "", ""];
   const [actionButton, setActionButton] = useState<string[]>(arrayJogo);
@@ -96,6 +154,7 @@ const Home: React.FC = () => {
             >
               <Button
                 sx={{
+                  background: corBotao,
                   color: "black",
                   fontSize: "48px",
                   display: "flex",
@@ -112,6 +171,7 @@ const Home: React.FC = () => {
               </Button>
               <Button
                 sx={{
+                  background: corBotao1,
                   color: "black",
                   fontSize: "48px",
                   display: "flex",
@@ -127,6 +187,7 @@ const Home: React.FC = () => {
               </Button>
               <Button
                 sx={{
+                  background: corBotao2,
                   color: "black",
                   fontSize: "48px",
                   display: "flex",
@@ -149,6 +210,7 @@ const Home: React.FC = () => {
             >
               <Button
                 sx={{
+                  background: corBotao3,
                   color: "black",
                   fontSize: "48px",
                   display: "flex",
@@ -164,6 +226,7 @@ const Home: React.FC = () => {
               </Button>
               <Button
                 sx={{
+                  background: corBotao4,
                   color: "black",
                   fontSize: "48px",
                   display: "flex",
@@ -178,6 +241,7 @@ const Home: React.FC = () => {
               </Button>
               <Button
                 sx={{
+                  background: corBotao5,
                   color: "black",
                   fontSize: "48px",
                   display: "flex",
@@ -199,6 +263,7 @@ const Home: React.FC = () => {
             >
               <Button
                 sx={{
+                  background: corBotao6,
                   color: "black",
                   fontSize: "48px",
                   display: "flex",
@@ -215,6 +280,7 @@ const Home: React.FC = () => {
               </Button>
               <Button
                 sx={{
+                  background: corBotao7,
                   color: "black",
                   fontSize: "48px",
                   display: "flex",
@@ -230,6 +296,7 @@ const Home: React.FC = () => {
               </Button>
               <Button
                 sx={{
+                  background: corBotao8,
                   color: "black",
                   fontSize: "48px",
                   display: "flex",
