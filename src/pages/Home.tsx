@@ -200,6 +200,7 @@ const Home: React.FC = () => {
                   borderRight: "5px solid brown",
                   width: "100px",
                   height: "100px",
+                  ":hover": { background: "#d3d3d3" },
                 }}
                 onClick={() => handleAction(0)}
               >
@@ -216,6 +217,7 @@ const Home: React.FC = () => {
                   borderBottom: "5px solid brown",
                   width: "100px",
                   height: "100px",
+                  ":hover": { background: "#d3d3d3" },
                 }}
                 onClick={() => handleAction(1)}
               >
@@ -233,6 +235,7 @@ const Home: React.FC = () => {
                   borderLeft: "5px solid brown",
                   width: "100px",
                   height: "100px",
+                  ":hover": { background: "#d3d3d3" },
                 }}
                 onClick={() => handleAction(2)}
               >
@@ -255,6 +258,7 @@ const Home: React.FC = () => {
                   borderRight: "5px solid brown",
                   width: "100px",
                   height: "100px",
+                  ":hover": { background: "#d3d3d3" },
                 }}
                 onClick={() => handleAction(3)}
               >
@@ -270,6 +274,7 @@ const Home: React.FC = () => {
                   alignItems: "center",
                   width: "100px",
                   height: "100px",
+                  ":hover": { background: "#d3d3d3" },
                 }}
                 onClick={() => handleAction(4)}
               >
@@ -286,6 +291,7 @@ const Home: React.FC = () => {
                   borderLeft: "5px solid brown",
                   width: "100px",
                   height: "100px",
+                  ":hover": { background: "#d3d3d3" },
                 }}
                 onClick={() => handleAction(5)}
               >
@@ -309,6 +315,7 @@ const Home: React.FC = () => {
                   borderRight: "5px solid brown",
                   width: "100px",
                   height: "100px",
+                  ":hover": { background: "#d3d3d3" },
                 }}
                 onClick={() => handleAction(6)}
               >
@@ -325,6 +332,7 @@ const Home: React.FC = () => {
                   borderTop: "5px solid brown",
                   width: "100px",
                   height: "100px",
+                  ":hover": { background: "#d3d3d3" },
                 }}
                 onClick={() => handleAction(7)}
               >
@@ -342,6 +350,7 @@ const Home: React.FC = () => {
                   borderLeft: "5px solid brown",
                   width: "100px",
                   height: "100px",
+                  ":hover": { background: "#d3d3d3" },
                 }}
                 onClick={() => handleAction(8)}
               >
