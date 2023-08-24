@@ -2,9 +2,13 @@ import { Button, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../store/hooks";
 import { useDispatch } from "react-redux";
-import { atualizarJogoAction } from "../store/modules/jogoSlice";
+import {
+  atualizarJogoAction,
+  reiniciarJogoAction,
+} from "../store/modules/jogoSlice";
 import { useNavigate } from "react-router-dom";
 import { deleteJogador } from "../store/modules/jogadorSlice";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import io from "socket.io-client";
 
 const Home: React.FC = () => {
@@ -26,6 +30,18 @@ const Home: React.FC = () => {
   useEffect(() => {
     const socketInstance = io("https://projeto-jogoda-velha-api.onrender.com");
     socketInstance.on("atualizacao", (dadosAtualizados) => {
+      if (dadosAtualizados.vitoria.length === 0) {
+        setCorBotao("none");
+        setCorBotao1("none");
+        setCorBotao2("none");
+        setCorBotao3("none");
+        setCorBotao4("none");
+        setCorBotao5("none");
+        setCorBotao6("none");
+        setCorBotao7("none");
+        setCorBotao8("none");
+      }
+
       if (dadosAtualizados.vitoria.includes(0)) {
         setCorBotao("#d3d3d3");
       }
@@ -90,10 +106,7 @@ const Home: React.FC = () => {
   const arrayJogo = tabuleiro.tabuleiro ?? ["", "", "", "", "", "", "", "", ""];
   const [actionButton, setActionButton] = useState<string[]>(arrayJogo);
 
-  const newArrayJogo = arrayJogo.slice();
-
   async function handleAction(id: number) {
-    setActionButton(newArrayJogo);
     const result = await dispatch(
       atualizarJogoAction({
         id_jogador01: idJogador.id_jogador01,
@@ -102,6 +115,18 @@ const Home: React.FC = () => {
         index: id,
       })
     );
+    setActionButton(result.payload.data.tabuleiro);
+  }
+
+  async function reiniciarJogo() {
+    const result = await dispatch(
+      reiniciarJogoAction({
+        id_jogador01: idJogador.id_jogador01,
+        id_jogador02: idJogador.id_jogador02,
+        id: tabuleiro.id,
+      })
+    );
+
     setActionButton(result.payload.data.tabuleiro);
   }
 
@@ -120,21 +145,32 @@ const Home: React.FC = () => {
         }}
       >
         <Grid sx={{ fontSize: "30px" }}>{`ID: #${tabuleiro.id}`}</Grid>
-        <Button
-          sx={{
-            margin: "5px",
-            border: "2px solid red",
-            color: "red",
-            "&:hover": {
-              backgroundColor: "brown",
-              color: "white",
-              border: "none",
-            },
-          }}
-          onClick={moveParaRegistro}
-        >
-          Sair
-        </Button>
+        <Grid sx={{ display: "flex", alignItems: "center" }}>
+          <RestartAltIcon
+            onClick={reiniciarJogo}
+            sx={{
+              marginRight: "5px",
+              cursor: "pointer",
+              fontSize: "40px",
+              ":hover": { fontSize: "45px" },
+            }}
+          />
+          <Button
+            sx={{
+              margin: "5px",
+              border: "2px solid red",
+              color: "red",
+              "&:hover": {
+                backgroundColor: "brown",
+                color: "white",
+                border: "none",
+              },
+            }}
+            onClick={moveParaRegistro}
+          >
+            Sair
+          </Button>
+        </Grid>
       </Grid>
 
       <Grid

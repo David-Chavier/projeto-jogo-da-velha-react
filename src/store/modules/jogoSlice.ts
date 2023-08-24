@@ -5,6 +5,7 @@ import {
   CriarJogoTypes,
   JogoTypes,
   ListarJogoTypes,
+  ReiniciarJogoTypes,
 } from "../../types/jogo.types";
 
 export const criarJogoAction = createAsyncThunk(
@@ -32,6 +33,14 @@ export const atualizarJogoAction = createAsyncThunk(
   }
 );
 
+export const reiniciarJogoAction = createAsyncThunk(
+  "jogo/reiniciar",
+  async (props: ReiniciarJogoTypes) => {
+    const result = await ApiService.reiniciarJogo(props);
+    return result;
+  }
+);
+
 const requestJogoSlice = createSlice({
   name: "jogo",
   initialState: {} as JogoTypes,
@@ -48,6 +57,11 @@ const requestJogoSlice = createSlice({
     });
 
     builder.addCase(atualizarJogoAction.fulfilled, (state, action) => {
+      console.log(action.payload.data ?? []);
+      return action.payload.data ?? [];
+    });
+
+    builder.addCase(reiniciarJogoAction.fulfilled, (state, action) => {
       console.log(action.payload.data ?? []);
       return action.payload.data ?? [];
     });

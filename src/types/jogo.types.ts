@@ -19,6 +19,12 @@ export type AtualizarJogoTypes = {
   index: number;
 };
 
+export type ReiniciarJogoTypes = {
+  id: string;
+  id_jogador01?: string;
+  id_jogador02?: string;
+};
+
 export type JogoTypes = {
   id: string;
   id_jogador01: string;

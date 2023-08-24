@@ -3,6 +3,7 @@ import {
   AtualizarJogoTypes,
   CriarJogoTypes,
   ListarJogoTypes,
+  ReiniciarJogoTypes,
 } from "../types/jogo.types";
 
 const api = axios.create({
@@ -59,6 +60,20 @@ export class ApiService {
       const result = await api.put(
         `/jogador/${props.id_jogador01}/jogo/${props.id}/${props.id_jogador02}`,
         props
+      );
+      return result.data;
+    } catch (err: any) {
+      console.log(err.response.data);
+      return err.response.data;
+    }
+  }
+
+  public static async reiniciarJogo(
+    props: ReiniciarJogoTypes
+  ): Promise<ApiResponse> {
+    try {
+      const result = await api.put(
+        `/jogador/${props.id_jogador01}/jogo/${props.id}/${props.id_jogador02}/reiniciar`
       );
       return result.data;
     } catch (err: any) {
