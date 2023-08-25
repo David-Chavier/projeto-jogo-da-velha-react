@@ -22,6 +22,15 @@ Sincronização em Tempo Real: O uso da biblioteca Socket.IO permite que os movi
 - Material-UI (MUI)
 - Socket.IO
 
+<h2> Passo a Passo para Criar uma Partida</h2> 
+
+- Inicie a Aplicação: Abra a aplicação em seu dispositivo.
+- Crie uma Nova Partida: Na tela inicial, clique no botão "Criar Partida".
+- Compartilhe o ID: Após criar a partida, você receberá um ID exclusivo.
+- Envie o ID para Seu Colega: Compartilhe esse ID com o seu colega de jogo.
+- Seu Colega Entra na Partida: Seu colega deverá inserir o ID na opção "Entrar em Partida" na tela inicial.
+- Comece a Jogar: Uma vez que ambos tenham inserido o ID e estejam conectados, vocês podem começar a jogar.
+
 <h2> Acessar a aplicação </h2>  
 Você pode experimentar a aplicação <a href="https://projeto-jogo-da-velha-react.vercel.app">aqui</a>.
 
